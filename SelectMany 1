@@ -1,0 +1,48 @@
+
+
+// There are  two Schools 
+
+var schools = new[] {
+    new School(){ SchoolName = "Modern School",
+        Students = new []
+        {
+            new Student(){ Name="Nanthini S"},
+            new Student(){ Name="Vicky"},
+            new Student(){ Name="Sahir"}}
+    },
+    new School(){
+        SchoolName = "Siragugal School",
+        Students = new [] {
+            new Student(){ Name="Nanthini"},
+            new Student(){ Name="Kalai"},
+          new Student(){Name="Abhi" }}
+
+
+}
+    };
+
+var allStudents = schools.SelectMany(p => p.Students,
+                                     (parent, child) => new {
+                                      
+                                      parent.SchoolName,
+                                      
+                                      child.Name });
+
+Console.WriteLine("All Students", allStudents);
+
+foreach (var student in allStudents)
+{
+Console.WriteLine($"{student.SchoolName} : {student.Name}");
+}
+
+class School
+{
+    public string SchoolName { get; set; } = "@";
+    public Student[] Students { get; set; }
+}
+
+class Student
+{
+    public string Name { get; set; } = "@";
+}
+
